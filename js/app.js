@@ -1,26 +1,31 @@
 //VARIABLES
 const nombreInput = document.querySelector("#mascota");
-const propieterioInput = document.querySelector("#propietario");
+const propietarioInput = document.querySelector("#propietario");
 const telefonoInput = document.querySelector("#telefono");
 const fechaInput = document.querySelector("#fecha");
 const horaInput = document.querySelector("#hora");
 const sintomasInput = document.querySelector("#sintomas");
+const tipoMascotaInput = document.querySelector("#tipoMascota");
+const edadMascotaInput = document.querySelector("#edadMascota");
 
 const formulario = document.querySelector("#nueva-cita");
 const btnSubmit = document.querySelector("#nueva-cita button[type='submit']");
 
 //EVENTOS
 nombreInput.addEventListener("input", datosCita);
-propieterioInput.addEventListener("input", datosCita);
+propietarioInput.addEventListener("input", datosCita);
 telefonoInput.addEventListener("input", datosCita);
 fechaInput.addEventListener("input", datosCita);
 horaInput.addEventListener("input", datosCita);
 sintomasInput.addEventListener("input", datosCita);
+tipoMascotaInput.addEventListener("input", datosCita);
+edadMascotaInput.addEventListener("input", datosCita);
 formulario.addEventListener("submit", submitCita);
 const listasCitas = document.querySelector("#citas");
 
 function datosCita(e) {
   citasObj[e.target.name] = e.target.value;
+  console.log(citasObj);
 }
 
 let editando = false;
@@ -30,6 +35,8 @@ const citasObj = {
   id: generarId(),
   mascota: "",
   propietario: "",
+  tipoMascota: "",
+  edadMascota: "",
   telefono: "",
   fecha: "",
   hora: "",
@@ -86,7 +93,7 @@ class AdminCitas {
     this.citas.forEach((cita) => {
       const li = document.createElement("li");
 
-      const { mascota, propietario, telefono, fecha, hora, sintomas } = cita;
+      const { mascota, propietario,tipoMascota, telefono, fecha, hora, sintomas, edadMascota } = cita;
 
       li.classList.add(
         "list-group-item",
@@ -127,6 +134,10 @@ class AdminCitas {
             
             <div class="row text-muted"> 
                 <div class="col-6">
+                <p class="mb-2"> 
+                        <i class="bi bi-person me-1"></i>
+                        <strong>Tipo:</strong> ${tipoMascota}
+                    </p>
                     <p class="mb-2"> 
                         <i class="bi bi-person me-1"></i>
                         <strong>Dueño:</strong> ${propietario}
@@ -137,6 +148,10 @@ class AdminCitas {
                     </p>
                 </div>
                 <div class="col-6">
+                <p class="mb-2">
+                        <i class="bi bi-calendar me-1"></i>
+                        <strong>Edad:</strong> ${edadMascota}
+                    </p>
                     <p class="mb-2">
                         <i class="bi bi-calendar me-1"></i>
                         <strong>Fecha:</strong> ${fecha}
@@ -274,6 +289,8 @@ function reiniciarObjeto() {
     id: generarId(),
     mascota: "",
     propietario: "",
+    tipoMascota: "",
+    edadMascota: "",
     telefono: "",
     fecha: "",
     hora: "",
@@ -289,7 +306,9 @@ function cargarEdicion(cita) {
   Object.assign(citasObj, cita);
 
   nombreInput.value = cita.mascota;
-  propieterioInput.value = cita.propietario;
+  propietarioInput.value = cita.propietario;
+  tipoMascotaInput.value = cita.tipoMascota;
+  edadMascotaInput.value = cita.edadMascota;
   telefonoInput.value = cita.telefono;
   fechaInput.value = cita.fecha;
   horaInput.value = cita.hora;
