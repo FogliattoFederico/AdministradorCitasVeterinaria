@@ -10,6 +10,7 @@ import {
   formulario,
 } from "./selectores.js";
 import { datosCita, submitCita } from "./funciones.js";
+import { CrearDB } from "./db.js";
 
 //EVENTOS
 nombreInput.addEventListener("input", datosCita);
@@ -21,3 +22,8 @@ sintomasInput.addEventListener("input", datosCita);
 tipoMascotaInput.addEventListener("input", datosCita);
 edadMascotaInput.addEventListener("input", datosCita);
 formulario.addEventListener("submit", submitCita);
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  CrearDB();
+})
+

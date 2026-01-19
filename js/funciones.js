@@ -1,7 +1,19 @@
 import AdminCitas from "./clases/AdminCitas.js";
 import Notificacion from "./clases/Notificacion.js";
 import { citasObj, editando } from "./variables.js";
-import { listasCitas, formulario, btnSubmit, nombreInput, propietarioInput, tipoMascotaInput, edadMascotaInput, telefonoInput, fechaInput, horaInput, sintomasInput } from "./selectores.js";
+import {
+  listasCitas,
+  formulario,
+  btnSubmit,
+  nombreInput,
+  propietarioInput,
+  tipoMascotaInput,
+  edadMascotaInput,
+  telefonoInput,
+  fechaInput,
+  horaInput,
+  sintomasInput,
+} from "./selectores.js";
 
 //Declaraciones globales
 const citas = new AdminCitas();
@@ -22,19 +34,22 @@ export function submitCita(e) {
   }
 
   if (editando.value) {
-    citas.ModificarCita({ ...citasObj });
+    
+    citas.ModificarCita()
     new Notificacion({
       mensaje: "Cita editada correctamente",
       tipo: "success",
     });
   } else {
-    citas.AgregarCita({ ...citasObj });
+    
+    citas.AgregarCita()
     new Notificacion({
       mensaje: "Cita agregada correctamente",
       tipo: "success",
     });
   }
 
+  citas.MostrarCitas();
   formulario.reset();
   reiniciarObjeto();
   editando.value = false;
