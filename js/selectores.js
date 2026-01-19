@@ -10,3 +10,4 @@ export const edadMascotaInput = document.querySelector("#edadMascota");
 export const formulario = document.querySelector("#nueva-cita");
 export const btnSubmit = document.querySelector("#nueva-cita button[type='submit']");
 export const listasCitas = document.querySelector("#citas");
+export const heading = document.querySelector('#administra')

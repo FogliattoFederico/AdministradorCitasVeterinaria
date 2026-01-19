@@ -1,4 +1,4 @@
-import { cargarEdicion, limpiarHTML } from "../funciones.js";
+import { cargarEdicion, limpiarHTML, textoHeading } from "../funciones.js";
 import { listasCitas } from "../selectores.js";
 import Notificacion from "./Notificacion.js";
 import { DB, EliminarCitaDB, AgregarCitaDB, ModificarCitaDB } from "../db.js";
@@ -13,8 +13,15 @@ export default class AdminCitas {
     limpiarHTML();
 
     const self = this;
+    const fnTextoHeading = textoHeading;
 
     const objectStore = DB.transaction("citas").objectStore("citas");
+
+    const total = objectStore.count();
+    
+    total.onsuccess = function(){
+        fnTextoHeading(total.result)
+    }
 
     objectStore.openCursor().onsuccess = function (e) {
       const cursor = e.target.result;

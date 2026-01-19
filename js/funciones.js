@@ -13,6 +13,7 @@ import {
   fechaInput,
   horaInput,
   sintomasInput,
+  heading
 } from "./selectores.js";
 
 //Declaraciones globales
@@ -96,3 +97,11 @@ export function cargarEdicion(cita) {
 
   btnSubmit.textContent = "Guardar Cambios";
 }
+export function textoHeading(resultado) {
+   
+    if (resultado > 0) {
+      heading.textContent = "Administra tus Citas ";
+    } else {
+      heading.textContent = "No hay Citas registradas";
+    }
+  }
